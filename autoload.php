@@ -1,13 +1,23 @@
 <?php
 
-spl_autoload_register(function ($class){
-    $relativePath = str_replace('\\',  DIRECTORY_SEPARATOR, $class);
-    $absolutePath = __DIR__ . DIRECTORY_SEPARATOR . $relativePath . '.php';
-    
-    if(file_exists($absolutePath)){
-        require_once($absolutePath);
-    }
-    else {
-        throw new Exception("Class {$class} not found in the path: {$absolutePath}");
+/*
+    Автозагрузка use FolderName\ClassName => foldername\ClassName
+*/
+
+spl_autoload_register(function ($class) {
+    $classParts = explode('\\', $class);
+    $namespace = implode('\\', array_slice($classParts, 0, -1));
+    $className = end($classParts);
+
+    tt($class);
+
+    $path = __DIR__ . DIRECTORY_SEPARATOR . strtolower($namespace) . DIRECTORY_SEPARATOR . $className . '.php'; 
+
+    tt($path);
+
+    if (file_exists($path)) {
+        require_once $path;
+    } else {
+        throw new Exception("Class {$class} not found in the path: {$path}");
     }
 });

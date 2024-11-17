@@ -3,27 +3,26 @@
 namespace classes;
 
 /*
-    Добавлен интерфейс, в случае новых способов хранения маршрутов
+    Добавлен интерфейс для работы с маршрутами, с возможностью загрузки их из JSON-конфига.
+    На будущее можно добавить добавление в бд
 */
 
-interface IRoutes{
+interface IRoutes {
     public static function getRoutes(): array;
-    public static function add(string $method, string $path, string $controller, string $action): void;
 }
 
-class Routes implements IRoutes{
-    private static array $routes = [];
+class Routes implements IRoutes {
+    private static array $routes;
 
-    public static function getRoutes(): array{
-        return self::$routes;
+    public function __construct()
+    {
+        $filePath = 'config/routes.json';
+        $json = file_get_contents($filePath);
+        $data = json_decode($json, true);
+        self::$routes = $data['routes'];
     }
 
-    public static function add(string $method, string $path, string $controller, string $action): void{
-        self::$routes[] = [
-            'method' => $method,
-            'path' => $path,
-            'controller' => $controller,
-            'action' => $action
-        ];
+    public static function getRoutes(): array {
+        return self::$routes;
     }
 }

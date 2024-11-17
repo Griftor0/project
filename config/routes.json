@@ -1,0 +1,16 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/",
+      "controller": "HomeController",
+      "action": "index"
+    },
+    {
+      "method": "POST",
+      "path": "/login",
+      "controller": "AuthController",
+      "action": "login"
+    }
+  ]
+}
