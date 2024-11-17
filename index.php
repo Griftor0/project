@@ -6,5 +6,13 @@ ini_set('display_errors', 1);
 require_once('autoload.php');
 
 use classes\Debugger;
+use classes\Routes;
+use classes\RouteService;
 
-Debugger::tt(1);
+$routes = new RouteService(new Routes());
+$routes->add('GET', '/home', 'HomeController', 'index');
+$routes->add('POST', '/login', 'AuthController', 'login');
+
+
+Debugger::tt($router->getRoutes());
+Debugger::tt($router2->getRoutes());
