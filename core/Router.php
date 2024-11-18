@@ -1,19 +1,20 @@
 <?php
 
-namespace classes;
-
 /*
     Класс маршрутизатора, который будет обрабатывать запросы и вызывать контроллеры с их методами.
+    TODO: Сделать обработку регулярок {id}
+    TODO: Написать хэндлер 404 при /controllers/Homecontroller; и при /autoload.php
 */
-use classes\Debugger;
+
+namespace Core;
+
+use Services\RouteService;
 
 class Router {
-    private RouteService $routeService;
     private array $routes;
 
     public function __construct(RouteService $routeService) {
-        $this->routeService = $routeService;
-        $this->routes = $this->routeService->getRoutes();
+        $this->routes = $routeService->getRoutes();
     }
 
     public function execute() {
@@ -29,6 +30,14 @@ class Router {
                 break;
             }      
         }
+
+        if(!$controller){
+            http_response_code(404);
+            header('HTTP/1.0 404 Not Found');
+            exit;
+        }
+
+        tt($controller);
 
         $controllerInstance = new $controller();
 

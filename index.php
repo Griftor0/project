@@ -3,12 +3,12 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once('autoload.php');
 require('debug.php');
+require_once('autoload.php');
 
-use classes\Router;
-use classes\Routes;
-use classes\RouteService;
+use Config\Routes;
+use Services\RouteService;
+use Core\Router;
 
 $routeService = new RouteService(new Routes());
 

@@ -1,10 +1,12 @@
 <?php
 
-namespace classes;
-
 /*
     Инжектор маршрутов.
 */
+
+namespace Services;
+
+use Config\IRoutes;
 
 class RouteService {
     private IRoutes $routesInterface;

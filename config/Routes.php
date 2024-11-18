@@ -1,11 +1,10 @@
 <?php
 
-namespace classes;
-
 /*
     Добавлен интерфейс для работы с маршрутами, с возможностью загрузки их из JSON-конфига.
-    На будущее можно добавить добавление в бд
 */
+
+namespace Config;
 
 interface IRoutes {
     public static function getRoutes(): array;

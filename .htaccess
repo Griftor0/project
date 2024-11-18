@@ -1,0 +1,13 @@
+<FilesMatch "\.php$">
+    RewriteCond %{REQUEST_URI} !^/index.php$
+    RewriteRule \.php$ - [R=404,L]
+</FilesMatch>
+
+Options -Indexes
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
+
+ErrorDocument 404 /404.php

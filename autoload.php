@@ -9,11 +9,7 @@ spl_autoload_register(function ($class) {
     $namespace = implode('\\', array_slice($classParts, 0, -1));
     $className = end($classParts);
 
-    tt($class);
-
     $path = __DIR__ . DIRECTORY_SEPARATOR . strtolower($namespace) . DIRECTORY_SEPARATOR . $className . '.php'; 
-
-    tt($path);
 
     if (file_exists($path)) {
         require_once $path;
