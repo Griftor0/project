@@ -1,13 +1,11 @@
-<FilesMatch "\.php$">
-    RewriteCond %{REQUEST_URI} !^/index.php$
-    RewriteRule \.php$ - [R=404,L]
-</FilesMatch>
 
-Options -Indexes
 RewriteEngine On
 
+# Для url с .php 403
+RewriteCond %{REQUEST_URI} !^/index\.php$
+RewriteRule \.(php|html|json|js|css)$ - [F,L]
+
+# Перенаправление на index.php для роутера
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [L]
-
-ErrorDocument 404 /404.php

@@ -4,7 +4,7 @@
     Добавлен интерфейс для работы с маршрутами, с возможностью загрузки их из JSON-конфига.
 */
 
-namespace Config;
+namespace Core;
 
 interface IRoutes {
     public static function getRoutes(): array;
