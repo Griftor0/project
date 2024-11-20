@@ -9,7 +9,7 @@ class Router {
         $this->routes = $routeService->getRoutes();
     }
 
-    public function execute() {
+    public function execute() : void {
         $URI = $_SERVER['REQUEST_URI'];
         $controller = null;  
         $action = null;    
@@ -17,7 +17,7 @@ class Router {
         
         foreach ($this->routes as $route) {
             if($URI === $route['path']){
-                $controller = "controllers\\" . $route['controller'];
+                $controller = "app\\controllers\\" . $route['controller'];
                 $action = $route['action'] ?? 'index';
                 break;
             }      

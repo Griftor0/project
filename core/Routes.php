@@ -15,8 +15,7 @@ class Routes implements IRoutes {
 
     public function __construct()
     {
-        $filePath = 'config/routes.json';
-        $json = file_get_contents($filePath);
+        $json = file_get_contents('config/routes.json');
         $data = json_decode($json, true);
         self::$routes = $data['routes'];
     }

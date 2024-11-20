@@ -1,9 +1,9 @@
 <?php 
 
-namespace Controllers;
+namespace App\Controllers;
 
 class HomeController{
-    public function index(){
+    public function index() : void{
         echo 'Home page';
     }
 }

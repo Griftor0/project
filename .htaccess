@@ -1,7 +1,7 @@
 
 RewriteEngine On
 
-# Для url с .php 403
+# 403 для url с .php 
 RewriteCond %{REQUEST_URI} !^/index\.php$
 RewriteRule \.(php|html|json|js|css)$ - [F,L]
 
