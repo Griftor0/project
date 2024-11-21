@@ -11,6 +11,12 @@
       "path": "/login",
       "controller": "AuthController",
       "action": "login"
+    },
+    {
+      "method": "GET",
+      "path": "/item/{id}",
+      "controller": "ItemController",
+      "action": "index"
     }
   ]
 }
