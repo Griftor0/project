@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-class HomeController {
+class HomeController extends Controller {
     public function index() : void {
-        echo 'Home page';
+        $this->render('home');
     }
 }

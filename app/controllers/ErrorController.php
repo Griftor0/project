@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class ErrorController {
+class ErrorController {  
     public function notFound() : void {
         http_response_code(404);
         echo "Page not found.";
