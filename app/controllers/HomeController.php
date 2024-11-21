@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-class HomeController{
-    public function index() : void{
+class HomeController {
+    public function index() : void {
         echo 'Home page';
     }
 }

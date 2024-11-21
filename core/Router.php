@@ -15,9 +15,7 @@ class Router {
         $route = $this->findRoute($URI);
 
         if (!$route) {
-            http_response_code(404);
-            header('HTTP/1.0 404 Not Found');
-            exit;
+            $this->handleNotFound();
         }
 
         $controller = 'App\\Controllers\\' . $route['controller'];
@@ -73,5 +71,10 @@ class Router {
         }
 
         return true;
+    }
+
+    private function handleNotFound() : void {
+        $controller = new \App\Controllers\ErrorController();
+        $controller->notFound();  // Вызов метода notFound для обработки ошибки 404
     }
 }
