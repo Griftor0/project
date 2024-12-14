@@ -7,5 +7,4 @@
 <header>
     headerlogo
 </header>
-<hr>
 </html>

@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use App\Exceptions\ErrorHandler;
+
 class Router {
     private array $routes;
 
@@ -15,18 +17,16 @@ class Router {
         $route = $this->findRoute($URI);
 
         if (!$route) {
-            $this->handleNotFound();
+            ErrorHandler::show404();
         }
 
         $controller = 'App\\Controllers\\' . $route['controller'];
         $action = $route['action'];
-
-        // Создаем экземпляр контроллера и вызываем действие
+        
         $controllerInstance = new $controller();
         call_user_func_array([$controllerInstance, $action], []);
     }
 
-    // Нахождение маршрута из routes.json
     private function findRoute(string $URI) : ?array {
         if ($URI === '/') {
             return [
@@ -54,7 +54,6 @@ class Router {
         return null;
     }
 
-    // Проверка валидности маршрута
     private function isRouteValid(array $parsedRoute, array $parsedURI) : bool {
         foreach ($parsedRoute as $key => $part) {
             $uriPart = $parsedURI[$key] ?? null;
@@ -71,10 +70,5 @@ class Router {
         }
 
         return true;
-    }
-
-    private function handleNotFound() : void {
-        $controller = new \App\Controllers\ErrorController();
-        $controller->notFound();  // Вызов метода notFound для обработки ошибки 404
     }
 }

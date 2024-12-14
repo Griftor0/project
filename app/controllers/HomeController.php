@@ -4,6 +4,6 @@ namespace App\Controllers;
 
 class HomeController extends Controller {
     public function index() : void {
-        $this->render('home');
+        $this->view('home');
     }
 }

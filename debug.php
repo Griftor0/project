@@ -10,11 +10,11 @@ function printArray($array) : void {
     echo '<hr>';
 }
 
-function tt($array) : void {
+function dd($array) : void {
     printArray($array);
 }
 
-function tte($array) : void {
+function dde($array) : void {
     printArray($array); 
     exit;
 }

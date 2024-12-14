@@ -2,20 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Controllers\ErrorController;
-
 class Controller{
-    protected function render(string $view){
+    protected function view(string $view){
+        $view = str_replace('.', '/', $view);
         $viewFolderPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR;
-        $viewFilePath = $viewFolderPath . $view . ".php";
-        if (file_exists($viewFilePath)) {
-            include $viewFolderPath . 'header.php';            
-            include $viewFilePath;
-            include $viewFolderPath . 'footer.php';
+        if (file_exists($viewFolderPath . $view . ".php")) {
+            include $viewFolderPath . 'layout.php';
         } 
         else {
-            $errorController = new ErrorController;
-            $errorController->notFound();
+            throw new \Exception("View {$view} not found in the path: {$viewFolderPath}");
         }
     }
 }
